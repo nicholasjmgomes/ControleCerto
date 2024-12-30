@@ -69,7 +69,7 @@ class DespesasController with Mensageria {
     });
   }
 
-  void dataSelecionada(BuildContext context) async {
+  Future<void> dataSelecionada(BuildContext context) async {
     final agora = DateTime.now();
     final primeiraData = DateTime(agora.year - 1, agora.month, agora.day);
     final dataIndicada = await showCalendarDatePicker2Dialog(
@@ -83,7 +83,7 @@ class DespesasController with Mensageria {
     );
     dataIndicada != null && dataIndicada.isNotEmpty
         ? dataEscolhidaNotifier.value = dataIndicada.first
-        : dataEscolhidaNotifier.value = null;
+        : dataEscolhidaNotifier.value = agora;
   }
 
   Future<void> onPressedEditar(BuildContext context, String id) async {

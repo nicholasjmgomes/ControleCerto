@@ -1,5 +1,6 @@
 import 'package:despesasmobile/components/base_drawer.dart';
 import 'package:despesasmobile/components/botao_cancelar.dart';
+import 'package:despesasmobile/components/botao_data.dart';
 import 'package:despesasmobile/components/botao_salvar.dart';
 import 'package:despesasmobile/components/dropdown.dart';
 import 'package:despesasmobile/components/title_text.dart';
@@ -101,41 +102,18 @@ class _AdicionarDespesaState extends State<AdicionarDespesa> {
                                   ),
                                 ),
                               ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 18.0, left: 16),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    ValueListenableBuilder<DateTime?>(
-                                      valueListenable:
-                                          controller.dataEscolhidaNotifier,
-                                      builder: (context, dataEscolhida, child) {
-                                        return Text(
-                                          dataEscolhida == null
-                                              ? 'Escolha a Data'
-                                              : controller.formatter
-                                                  .format(dataEscolhida),
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 14),
-                                        );
-                                      },
-                                    ),
-                                    IconButton(
-                                      onPressed: () =>
-                                          controller.dataSelecionada(context),
-                                      icon: const Icon(
-                                        Icons.calendar_month_outlined,
-                                        color: Colors.lightBlue,
-                                        size: 20,
-                                      ),
-                                    ),
-                                  ],
+                              ValueListenableBuilder(
+                                valueListenable:
+                                    controller.dataEscolhidaNotifier,
+                                builder: (context, dataEscolhida, child) =>
+                                    BotaoData(
+                                  dataEscolhida: dataEscolhida == null
+                                      ? controller.formatter
+                                          .format(DateTime.now())
+                                      : controller.formatter
+                                          .format(dataEscolhida),
+                                  onTap: () =>
+                                      controller.dataSelecionada(context),
                                 ),
                               ),
                             ],
