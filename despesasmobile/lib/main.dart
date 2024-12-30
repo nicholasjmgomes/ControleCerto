@@ -6,7 +6,6 @@ import 'package:intl/date_symbol_data_local.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Inicializar locais suportados pela biblioteca intl
   await initializeDateFormatting('pt_BR', null);
   customInjection();
   runApp(const DespesasMobile());
