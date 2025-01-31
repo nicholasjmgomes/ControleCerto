@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "VmJO6EOKAxkDtji2Xi6fz6pwiZ4nlS8HVOyU67BOBnE=",
+  "Source": "despesasapi",
+  "BasePath": "_content/despesasapi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
