@@ -13,7 +13,7 @@ DespesaResumida _$DespesaResumidaFromJson(Map<String, dynamic> json) =>
       descricao: json['descricao'] as String,
       formaPagamento:
           $enumDecode(_$FormaPagamentoEnumMap, json['formaPagamento']),
-      idDespesa: json['idDespesa'] as String,
+      id: json['id'] as int,
       nomeDespesa: json['nomeDespesa'] as String,
       valor: (json['valor'] as num).toDouble(),
     );
@@ -24,21 +24,21 @@ Map<String, dynamic> _$DespesaResumidaToJson(DespesaResumida instance) =>
       'data': instance.data.toIso8601String(),
       'descricao': instance.descricao,
       'formaPagamento': _$FormaPagamentoEnumMap[instance.formaPagamento],
-      'idDespesa': instance.idDespesa,
+      'idDespesa': instance.id,
       'nomeDespesa': instance.nomeDespesa,
       'valor': instance.valor,
     };
 
 const _$TipoDespesaEnumMap = {
-  TipoDespesa.alimentacao: 'alimentacao',
-  TipoDespesa.trabalho: 'trabalho',
-  TipoDespesa.lazer: 'lazer',
-  TipoDespesa.viagem: 'viagem',
+  TipoDespesa.alimentacao: 'Alimentacao',
+  TipoDespesa.trabalho: 'Trabalho',
+  TipoDespesa.lazer: 'Lazer',
+  TipoDespesa.viagem: 'Viagem',
 };
 
 const _$FormaPagamentoEnumMap = {
-  FormaPagamento.dinheiro: 'dinheiro',
-  FormaPagamento.credito: 'credito',
-  FormaPagamento.debito: 'debito',
-  FormaPagamento.pix: 'pix',
+  FormaPagamento.dinheiro: 'Dinheiro',
+  FormaPagamento.credito: 'Credito',
+  FormaPagamento.debito: 'Debito',
+  FormaPagamento.pix: 'Pix',
 };

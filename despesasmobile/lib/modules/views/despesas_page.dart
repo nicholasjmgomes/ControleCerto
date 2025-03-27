@@ -106,7 +106,7 @@ class _DespesasPage extends State<DespesasPage> {
                                 },
                                 onEditDespesa: (despesa) {
                                   controller.onPressedEditar(
-                                      context, despesa.idDespesa);
+                                      context, despesa.id);
                                 },
                                 despesa,
                                 cardColor: controller

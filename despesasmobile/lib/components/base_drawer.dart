@@ -23,7 +23,7 @@ class Header extends StatelessWidget {
       ),
       child: Center(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             BotaoVoltar(
               onPressed: () => Navigator.of(context).pop(),

@@ -45,7 +45,7 @@ class DespesasController with Mensageria {
   List<Despesas> get despesas => despesasNotifier.value;
 
   final Despesas despesaObjeto = Despesas(
-      idDespesa: '',
+      id: 0,
       descricao: '',
       nomeDespesa: '',
       valor: 0,
@@ -86,7 +86,7 @@ class DespesasController with Mensageria {
         : dataEscolhidaNotifier.value = agora;
   }
 
-  Future<void> onPressedEditar(BuildContext context, String id) async {
+  Future<void> onPressedEditar(BuildContext context, int id) async {
     final despesaResumida = await carregarDespesaParaEdicao(id);
 
     await showDialog(
@@ -95,7 +95,7 @@ class DespesasController with Mensageria {
     );
 
     final despesaEditada = Despesas(
-        idDespesa: id,
+        id: id,
         descricao: despesaResumida.descricao,
         nomeDespesa: despesaResumida.nomeDespesa,
         valor: despesaResumida.valor,
@@ -124,7 +124,7 @@ class DespesasController with Mensageria {
     }
 
     final despesa = Despesas(
-      idDespesa: despesaParaEdicaoNotifier.value?.idDespesa ?? gerarIdDespesa(),
+      id: despesaParaEdicaoNotifier.value!.id,
       nomeDespesa: nomeDespesaController.text,
       valor: valorEnviado,
       data: dataEscolhidaNotifier.value!,
@@ -152,7 +152,7 @@ class DespesasController with Mensageria {
     isLoadingNotifier.value = true;
     try {
       await despesaService.deleteDespesa(
-        despesa.idDespesa,
+        despesa.id,
       );
       await fetchDespesas();
       isLoadingNotifier.value = false;
@@ -162,7 +162,7 @@ class DespesasController with Mensageria {
     isLoadingNotifier.value = false;
   }
 
-  Future<DespesaResumida> carregarDespesaParaEdicao(String idDespesa) async {
+  Future<DespesaResumida> carregarDespesaParaEdicao(int idDespesa) async {
     try {
       final result = await DespesasService().getDespesaEspecifica(idDespesa);
       despesaParaEdicaoNotifier.value = result;
@@ -172,7 +172,7 @@ class DespesasController with Mensageria {
           data: result.data,
           descricao: result.descricao,
           formaPagamento: result.formaPagamento,
-          idDespesa: idDespesa,
+          id: idDespesa,
           nomeDespesa: result.nomeDespesa,
           valor: result.valor);
 
