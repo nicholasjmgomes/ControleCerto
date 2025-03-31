@@ -218,7 +218,7 @@ class _AdicionarDespesaState extends State<AdicionarDespesa> {
                             ],
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 18,
                           ),
                           const TitleText('Descrição da despesa'),
                           Padding(
