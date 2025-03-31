@@ -7,7 +7,7 @@ part 'despesas.g.dart';
 @JsonSerializable()
 class Despesas {
   Despesas(
-      {required this.id,
+      {this.id = 0,
       required this.descricao,
       required this.nomeDespesa,
       required this.valor,
@@ -15,7 +15,7 @@ class Despesas {
       required this.categoria,
       required this.formaPagamento});
 
-  int id;
+  final int id;
   final String nomeDespesa;
   final double valor;
   final DateTime data;

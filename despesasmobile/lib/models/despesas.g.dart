@@ -7,7 +7,7 @@ part of 'despesas.dart';
 // **************************************************************************
 
 Despesas _$DespesasFromJson(Map<String, dynamic> json) => Despesas(
-      id: json['id'] as int,
+      id: (json['id'] as num?)?.toInt() ?? 0,
       descricao: json['descricao'] as String,
       nomeDespesa: json['nomeDespesa'] as String,
       valor: (json['valor'] as num).toDouble(),
@@ -18,7 +18,7 @@ Despesas _$DespesasFromJson(Map<String, dynamic> json) => Despesas(
     );
 
 Map<String, dynamic> _$DespesasToJson(Despesas instance) => <String, dynamic>{
-      'int': instance.id,
+      'id': instance.id,
       'nomeDespesa': instance.nomeDespesa,
       'valor': instance.valor,
       'data': instance.data.toIso8601String(),

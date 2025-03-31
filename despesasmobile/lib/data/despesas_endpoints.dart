@@ -1,28 +1,26 @@
+import 'package:despesasmobile/models/despesas.dart';
+
 class DespesasEndpoints {
   static const String baseUrl =
-      'https://f82c-177-192-15-162.ngrok-free.app/api/despesas';
+      'https://7423-177-192-15-162.ngrok-free.app/api/despesas/';
 
   static String getDespesas() {
     return baseUrl;
   }
 
   static String getDespesaEspecifica(int idDespesa) {
-    return '$baseUrl$idDespesa';
+    return '$baseUrl/$idDespesa';
   }
 
-  static String saveDespesa(int idDespesa) {
-    return '$baseUrl$idDespesa';
-  }
-
-  static String createDespesa() {
+  static String saveDespesa(Despesas despesa) {
     return baseUrl;
   }
 
   static String deleteDespesa(int idDespesa) {
-    return '$baseUrl$idDespesa';
+    return '${baseUrl}ExcluirDespesa/$idDespesa';
   }
 
-  static String updateDespesa(int idDespesa) {
-    return '$baseUrl$idDespesa';
+  static String updateDespesa(Despesas despesa) {
+    return baseUrl;
   }
 }
