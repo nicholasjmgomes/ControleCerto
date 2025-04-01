@@ -11,40 +11,28 @@ class BotaoData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+      color: Colors.transparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(18),
-        splashColor: Colors.lightBlue,
+        splashColor: Colors.transparent,
         onTap: onTap,
-        child: Ink(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 30),
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.04,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(18),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    dataEscolhida,
-                    style: GoogleFonts.roboto(
-                        fontWeight: FontWeight.bold, fontSize: 14),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  const Icon(
-                    Icons.calendar_month_outlined,
-                    color: Colors.lightBlue,
-                    size: 20,
-                  ),
-                ],
-              ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              dataEscolhida,
+              style:
+                  GoogleFonts.roboto(fontWeight: FontWeight.bold, fontSize: 16),
             ),
-          ),
+            const SizedBox(
+              width: 10,
+            ),
+            const Icon(
+              Icons.calendar_month_outlined,
+              color: Colors.lightBlue,
+              size: 24,
+            ),
+          ],
         ),
       ),
     );

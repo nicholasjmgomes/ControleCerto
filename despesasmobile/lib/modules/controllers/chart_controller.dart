@@ -13,11 +13,11 @@ class ChartController {
       TotalDespesas.forTipoDespesa(despesas, TipoDespesa.alimentacao,
           const Color.fromARGB(255, 180, 221, 255)),
       TotalDespesas.forTipoDespesa(despesas, TipoDespesa.lazer,
-          const Color.fromARGB(255, 160, 204, 241)),
+          const Color.fromARGB(255, 135, 167, 193)),
       TotalDespesas.forTipoDespesa(despesas, TipoDespesa.viagem,
-          const Color.fromARGB(255, 137, 184, 223)),
+          const Color.fromARGB(255, 111, 164, 207)),
       TotalDespesas.forTipoDespesa(despesas, TipoDespesa.trabalho,
-          const Color.fromARGB(255, 59, 92, 117)),
+          const Color.fromARGB(255, 18, 101, 164)),
     ];
   }
 

@@ -3,17 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Header extends StatelessWidget {
-  const Header({required this.texto, this.child, this.padding, super.key});
+  const Header(
+      {required this.texto,
+      this.padding,
+      this.height = 65,
+      this.width = double.maxFinite,
+      super.key});
 
-  final Widget? child;
   final String texto;
   final EdgeInsets? padding;
+  final double? height;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 65,
-      width: double.maxFinite,
+      height: height,
+      width: width,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(18),
@@ -23,13 +29,13 @@ class Header extends StatelessWidget {
       ),
       child: Center(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             BotaoVoltar(
               onPressed: () => Navigator.of(context).pop(),
             ),
             const SizedBox(
-              width: 14,
+              width: 36,
             ),
             Padding(
               padding: padding!,

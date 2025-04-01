@@ -90,13 +90,15 @@ class DespesasController with Mensageria {
 
     await carregarDespesaParaEdicao(despesaParaEdicao);
 
-    await showDialog(
-      context: context,
-      builder: (BuildContext context) => EditarDespesa(),
-    );
+    if (context.mounted) {
+      await showDialog(
+        context: context,
+        builder: (BuildContext context) => const EditarDespesa(),
+      );
+    }
   }
 
-  Future<void> onPressedSalvar() async {
+  Future<void> onPressedSalvar(BuildContext context) async {
     isLoadingNotifier.value = true;
 
     final isValid = formKey.currentState?.validate() ?? false;
@@ -119,7 +121,7 @@ class DespesasController with Mensageria {
       id: despesaParaEdicaoNotifier.value?.id ?? 0,
       nomeDespesa: nomeDespesaController.text,
       valor: valorEnviado,
-      data: dataEscolhidaNotifier.value!,
+      data: dataEscolhidaNotifier.value ?? DateTime.now(),
       categoria: tipoDespesaNotifier.value!,
       descricao: descricaoDespesaController.text,
       formaPagamento: pagamentoEscolhidoNotifier.value!,
@@ -131,6 +133,12 @@ class DespesasController with Mensageria {
       } else {
         await despesaService.saveDespesa(despesa);
       }
+
+      if (context.mounted) {
+        Navigator.pop(context);
+        toastDeSucesso(context);
+      }
+
       await fetchDespesas();
     } catch (e) {
       isLoadingNotifier.value = false;
@@ -140,14 +148,25 @@ class DespesasController with Mensageria {
     isLoadingNotifier.value = false;
   }
 
-  Future<void> onPressedExcluir(Despesas despesa) async {
+  Future<void> onPressedExcluir(BuildContext context, Despesas despesa) async {
     isLoadingNotifier.value = true;
+
     try {
       await despesaService.deleteDespesa(despesa.id);
+
+      if (context.mounted) {
+        Navigator.pop(context);
+        toastExclusaoSucesso(context);
+      }
+
       await fetchDespesas();
+      isLoadingNotifier.value = false;
     } catch (e) {
-      debugPrint(e.toString());
-      throw Exception('Não foi possível excluir a despesa.');
+      if (context.mounted) {
+        Navigator.pop(context);
+        toastDeFalha(context);
+      }
+      isLoadingNotifier.value = false;
     } finally {
       isLoadingNotifier.value = false;
     }
@@ -195,7 +214,20 @@ class DespesasController with Mensageria {
   }
 
   void toastDeSucesso(BuildContext context) {
-    toastSucesso(context, 'Despesa salva com sucesso!');
+    toastSucesso(
+      context,
+      'Despesa salva com sucesso!',
+      const Icon(Icons.check_circle_outline_rounded,
+          size: 28.0, color: Colors.green),
+    );
+  }
+
+  void toastDeFalha(BuildContext context) {
+    toastSucesso(
+      context,
+      'Falha na solicitação',
+      const Icon(Icons.close, size: 28.0, color: Colors.red),
+    );
   }
 
   Future<void> fetchDespesas() async {
@@ -204,7 +236,12 @@ class DespesasController with Mensageria {
   }
 
   void toastExclusaoSucesso(BuildContext context) {
-    toastSucesso(context, 'Despesa excluída com sucesso!');
+    toastSucesso(
+      context,
+      'Despesa excluída com sucesso!',
+      const Icon(Icons.check_circle_outline_rounded,
+          size: 28.0, color: Colors.green),
+    );
   }
 
   Future<void> showAdicionarDespesaDialog(BuildContext context) async {

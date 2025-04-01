@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:despesasmobile/models/despesas.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../data/despesas_endpoints.dart';
 
@@ -9,7 +8,6 @@ class DespesasService {
     final response = await http.get(Uri.parse(DespesasEndpoints.getDespesas()));
 
     if (response.statusCode == 200) {
-      debugPrint(response.body);
       final List<dynamic> data = json.decode(response.body);
 
       return data.map<Despesas>((json) {
@@ -64,9 +62,6 @@ class DespesasService {
       body: jsonEncode(despesa.toJson()),
       headers: {'Content-Type': 'application/json'},
     );
-
-    debugPrint('Status code: ${response.statusCode}');
-    debugPrint('Response body: ${response.body}');
 
     if (response.statusCode != 200) {
       throw Exception('Falha ao atualizar despesa');

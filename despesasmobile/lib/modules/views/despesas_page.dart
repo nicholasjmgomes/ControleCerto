@@ -3,6 +3,7 @@ import 'package:despesasmobile/components/despesas_card.dart';
 import 'package:despesasmobile/injections/custom_injection.dart';
 import 'package:despesasmobile/models/despesas.dart';
 import 'package:despesasmobile/modules/controllers/despesas_controller.dart';
+import 'package:despesasmobile/utils/should_show.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -27,8 +28,7 @@ class _DespesasPage extends State<DespesasPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Padding(
-          padding: const EdgeInsets.only(left: 64),
+        title: Center(
           child: Text(
             'Controle de Despesas',
             style: GoogleFonts.roboto(
@@ -83,8 +83,13 @@ class _DespesasPage extends State<DespesasPage> {
                   builder: (context, despesas, child) {
                     return Column(
                       children: [
-                        Visibility(
+                        ShouldShow(
                           visible: despesas.isNotEmpty,
+                          replacement: const Center(
+                            child: Text(
+                              "Nenhuma despesa encontrada",
+                            ),
+                          ),
                           child: GridView.builder(
                             padding: const EdgeInsets.symmetric(horizontal: 16),
                             shrinkWrap: true,
@@ -102,7 +107,7 @@ class _DespesasPage extends State<DespesasPage> {
 
                               return DespesasCard(
                                 onRemoveDespesa: (despesa) {
-                                  controller.onPressedExcluir(despesa);
+                                  controller.onPressedExcluir(context, despesa);
                                 },
                                 onEditDespesa: (despesa) {
                                   controller.onPressedEditar(
@@ -113,14 +118,6 @@ class _DespesasPage extends State<DespesasPage> {
                                     .getColorForTipoDespesa(despesa.categoria),
                               );
                             },
-                          ),
-                        ),
-                        Visibility(
-                          visible: despesas.isEmpty,
-                          child: const Center(
-                            child: Text(
-                              "Nenhuma despesa encontrada",
-                            ),
                           ),
                         ),
                       ],

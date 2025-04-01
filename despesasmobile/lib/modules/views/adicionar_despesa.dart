@@ -1,4 +1,4 @@
-import 'package:despesasmobile/components/base_drawer.dart';
+import 'package:despesasmobile/components/header.dart';
 import 'package:despesasmobile/components/botao_cancelar.dart';
 import 'package:despesasmobile/components/botao_data.dart';
 import 'package:despesasmobile/components/botao_salvar.dart';
@@ -102,6 +102,9 @@ class _AdicionarDespesaState extends State<AdicionarDespesa> {
                                   ),
                                 ),
                               ),
+                              const SizedBox(
+                                width: 60,
+                              ),
                               ValueListenableBuilder(
                                 valueListenable:
                                     controller.dataEscolhidaNotifier,
@@ -169,8 +172,10 @@ class _AdicionarDespesaState extends State<AdicionarDespesa> {
                                 ),
                               ),
                               Flexible(
-                                child: SizedBox(
-                                  width: 130,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                    right: 10,
+                                  ),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -255,9 +260,7 @@ class _AdicionarDespesaState extends State<AdicionarDespesa> {
                                             ?.validate() ??
                                         false;
                                     if (isValid) {
-                                      controller.onPressedSalvar();
-                                      Navigator.pop(context);
-                                      controller.toastDeSucesso(context);
+                                      controller.onPressedSalvar(context);
                                     }
                                     return;
                                   },

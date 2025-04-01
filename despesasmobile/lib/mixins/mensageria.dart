@@ -2,7 +2,7 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 
 mixin Mensageria<T extends StatelessWidget> {
-  toastSucesso(BuildContext context, String message,
+  toastSucesso(BuildContext context, String message, Icon icon,
       {FlushbarPosition? position, Duration? duration}) {
     Flushbar flush = Flushbar();
 
