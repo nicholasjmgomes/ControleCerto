@@ -234,7 +234,7 @@ class _AdicionarDespesaState extends State<AdicionarDespesa> {
                             ),
                             child: TextBox(
                               controller: controller.descricaoDespesaController,
-                              maxLength: 200,
+                              maxLength: 40,
                               validator: (value) =>
                                   Validadores.descricao(value),
                               autovalidateMode:

@@ -158,16 +158,13 @@ class DespesasController with Mensageria {
         Navigator.pop(context);
         toastExclusaoSucesso(context);
       }
-
-      await fetchDespesas();
-      isLoadingNotifier.value = false;
     } catch (e) {
       if (context.mounted) {
         Navigator.pop(context);
         toastDeFalha(context);
       }
-      isLoadingNotifier.value = false;
     } finally {
+      await fetchDespesas();
       isLoadingNotifier.value = false;
     }
   }
@@ -232,7 +229,7 @@ class DespesasController with Mensageria {
 
   Future<void> fetchDespesas() async {
     final List<Despesas> despesas = await despesaService.fetchDespesas();
-    despesasNotifier.value = List.from(despesas);
+    despesasNotifier.value = despesas;
   }
 
   void toastExclusaoSucesso(BuildContext context) {

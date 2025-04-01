@@ -63,7 +63,7 @@ class _DespesasPage extends State<DespesasPage> {
                 ValueListenableBuilder<List<Despesas>>(
                   valueListenable: controller.despesasNotifier,
                   builder: (context, despesas, child) =>
-                      Chart(despesas: controller.despesasNotifier.value),
+                      Chart(despesas: despesas),
                 ),
                 const SizedBox(
                   height: 10,
