@@ -2,7 +2,7 @@ import 'package:despesasmobile/models/despesas.dart';
 
 class DespesasEndpoints {
   static const String baseUrl =
-      'https://7af1-177-192-15-162.ngrok-free.app/api/despesas';
+      'https://prepared-forcibly-hagfish.ngrok-free.app/api/despesas';
 
   static String getDespesas() {
     return baseUrl;

@@ -35,101 +35,114 @@ class _DetalhesDespesaState extends State<DetalhesDespesa> {
         padding: const EdgeInsets.symmetric(vertical: 16),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 75,
-              ),
-              child: Column(
-                children: [
-                  Row(
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                RichText(
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  text: TextSpan(
+                    style: const TextStyle(
+                      color: Color.fromARGB(255, 3, 8, 77),
+                    ),
                     children: [
-                      Text(
-                        'Título: ',
-                        style: GoogleFonts.roboto(
-                            color: const Color.fromARGB(255, 3, 8, 77),
-                            fontWeight: FontWeight.bold),
+                      const TextSpan(
+                        text: 'Título: ',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 14,
+                          color: Color.fromARGB(255, 3, 8, 77),
+                        ),
                       ),
-                      Text(
-                        widget.despesa.nomeDespesa,
-                        style: GoogleFonts.roboto(color: Colors.lightBlue),
+                      TextSpan(
+                        text: widget.despesa.nomeDespesa,
+                        style: GoogleFonts.roboto(
+                          color: Colors.lightBlue,
+                        ),
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Valor: ',
+                      style: GoogleFonts.roboto(
+                          color: const Color.fromARGB(255, 3, 8, 77),
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'R\$ ${widget.despesa.valor.toStringAsFixed(2).replaceAll('.', ',')}',
+                      style: GoogleFonts.roboto(color: Colors.lightBlue),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Data: ',
+                      style: GoogleFonts.roboto(
+                          color: const Color.fromARGB(255, 3, 8, 77),
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      Formatadores.dataFormatada(widget.despesa.data),
+                      style: GoogleFonts.roboto(color: Colors.lightBlue),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Tipo de despesa: ',
+                      style: GoogleFonts.roboto(
+                          color: const Color.fromARGB(255, 3, 8, 77),
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      widget.despesa.categoria.nome,
+                      style: GoogleFonts.roboto(color: Colors.lightBlue),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                RichText(
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  text: TextSpan(
+                    style: const TextStyle(
+                      color: Color.fromARGB(255, 3, 8, 77),
+                    ),
                     children: [
-                      Text(
-                        'Valor: ',
-                        style: GoogleFonts.roboto(
-                            color: const Color.fromARGB(255, 3, 8, 77),
-                            fontWeight: FontWeight.bold),
+                      const TextSpan(
+                        text: 'Descrição: ',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 14,
+                          color: Color.fromARGB(255, 3, 8, 77),
+                        ),
                       ),
-                      Text(
-                        'R\$ ${widget.despesa.valor.toStringAsFixed(2).replaceAll('.', ',')}',
-                        style: GoogleFonts.roboto(color: Colors.lightBlue),
+                      TextSpan(
+                        text: widget.despesa.descricao,
+                        style: GoogleFonts.roboto(
+                          color: Colors.lightBlue,
+                        ),
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        'Data: ',
-                        style: GoogleFonts.roboto(
-                            color: const Color.fromARGB(255, 3, 8, 77),
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        Formatadores.dataFormatada(widget.despesa.data),
-                        style: GoogleFonts.roboto(color: Colors.lightBlue),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        'Tipo de despesa: ',
-                        style: GoogleFonts.roboto(
-                            color: const Color.fromARGB(255, 3, 8, 77),
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        widget.despesa.categoria.nome,
-                        style: GoogleFonts.roboto(color: Colors.lightBlue),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        'Descrição: ',
-                        style: GoogleFonts.roboto(
-                            color: const Color.fromARGB(255, 3, 8, 77),
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      Text(
-                        widget.despesa.descricao,
-                        maxLines: 4,
-                        overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.roboto(color: Colors.lightBlue),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
             const SizedBox(
               height: 36,

@@ -43,9 +43,14 @@ class DespesasCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                despesa.nomeDespesa,
-                style: GoogleFonts.roboto(fontWeight: FontWeight.bold),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  despesa.nomeDespesa,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.roboto(fontWeight: FontWeight.bold),
+                ),
               ),
               const SizedBox(
                 height: 10,
